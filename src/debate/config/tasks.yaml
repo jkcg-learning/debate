@@ -11,7 +11,7 @@ debate_round_task:
   expected_output: >
     Arguments from both debaters for the current round.
   agent: moderator
-  iterations: 1  # We'll handle iterations in the code
+  iterations: 5  # We'll handle iterations in the code
 
 declare_winner_task:
   description: >

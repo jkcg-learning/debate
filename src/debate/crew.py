@@ -2,6 +2,7 @@
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import JSONSearchTool
 
 @CrewBase
 class DebateCrew:
@@ -13,6 +14,8 @@ class DebateCrew:
         self.inputs = {}
         self.debater_a = None
         self.debater_b = None
+        self.debater_a_tool = JSONSearchTool(file_path="./data/debater_a.json")
+        self.debater_b_tool = JSONSearchTool(file_path="./data/debater_b.json")
 
     @agent
     def moderator(self) -> Agent:
@@ -145,7 +148,7 @@ class DebateCrew:
         topic = inputs['topic']
         debater_a_name = self.inputs['debater_a_name']
         debater_b_name = self.inputs['debater_b_name']
-        total_rounds = 3  # Number of rounds
+        total_rounds = 10  # Number of rounds
 
         for i in range(total_rounds):
             print(f"\n--- Debate Round {i+1} ---\n")
